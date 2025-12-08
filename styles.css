@@ -1,119 +1,134 @@
+/* ------------------------------
+   Base Styles
+------------------------------ */
 body {
-    font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
-    background-color: #fef6e4;
-    color: #222;
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif; /* playful font */
     line-height: 1.6;
+    background-color: #f9f7f1; /* soft, warm background */
+    color: #222;
     margin: 0;
     padding: 0;
 }
 
-/* Wrapper to contain content within window */
-.wrapper {
-    max-width: 1000px; /* restrict width for readability */
-    margin: 0 auto; /* center content */
-    padding: 1rem; /* space around content */
-    box-sizing: border-box;
+/* ------------------------------
+   Container for all content
+------------------------------ */
+.container {
+    max-width: 900px;   /* keeps content from stretching too wide */
+    margin: 0 auto;     /* centers content horizontally */
+    padding: 1em;       /* spacing inside container */
 }
 
-h1, h2, h3 {
-    font-family: 'Permanent Marker', cursive;
-    color: #d1495b;
-    margin: 1rem 0 0.5rem 0;
-}
-
+/* ------------------------------
+   Headings
+------------------------------ */
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.2em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
     text-align: center;
 }
 
-h2 {
-    font-size: 2rem;
-}
-
 h3 {
-    font-size: 1.5rem;
-    margin-top: 1.5rem;
+    font-size: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
 }
 
-p, i {
-    margin: 0.5rem 0;
+/* ------------------------------
+   Paragraphs & italics
+------------------------------ */
+p {
+    margin-bottom: 1em;
 }
 
 i {
-    color: #555;
+    font-style: italic;
 }
 
-/* ---------------------------------------
-   Images & Figures
---------------------------------------- */
+/* ------------------------------
+   Images
+------------------------------ */
 img {
+    max-width: 100%;  /* image scales to container width */
+    height: auto;     /* maintain aspect ratio */
     display: block;
-    max-width: 100%; /* scale images to fit container */
-    height: auto;
-    margin: 1rem auto;
-    border: 3px dashed #d1495b;
-    border-radius: 8px;
+    margin: 1em auto; /* center images and add spacing */
+    border-radius: 5px; /* subtle rounded corners for a nicer look */
 }
 
+/* Figure & captions */
 figure {
+    margin: 1em 0;
     text-align: center;
 }
 
 figcaption {
-    font-size: 0.9rem;
+    font-size: 0.9em;
     color: #555;
-    margin-top: 0.25rem;
 }
 
-/* ---------------------------------------
+/* ------------------------------
    Navigation
---------------------------------------- */
+------------------------------ */
 .nav {
-    background-color: #ffcb77;
-    padding: 0.5rem;
-    position: sticky;
+    background-color: #333;
+    position: sticky; /* sticky nav */
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .nav ul {
     list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* wrap if window is too narrow */
+    justify-content: center;
 }
 
 .nav li {
-    margin: 0.5rem 1rem;
+    margin: 0.5em;
 }
 
 .nav a {
     text-decoration: none;
-    color: #222;
-    font-weight: bold;
-    transition: color 0.3s, transform 0.2s;
+    color: white;
+    padding: 0.5em 1em;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .nav a:hover {
-    color: #d1495b;
-    transform: scale(1.1);
+    background-color: #555;
+    color: #fff;
+    border-radius: 3px;
 }
 
-/* ---------------------------------------
-   Responsive Layout
---------------------------------------- */
-@media (max-width: 1024px) {
-    .wrapper {
-        padding: 0.8rem;
-    }
+/* ------------------------------
+   Links in content
+------------------------------ */
+a {
+    color: #333;
 }
 
-@media (max-width: 768px) {
+a:hover {
+    color: #555;
+}
+
+/* ------------------------------
+   Responsive tweaks
+------------------------------ */
+@media (max-width: 600px) {
     h1 {
-        font-size: 2rem;
+        font-size: 1.8em;
     }
 
-    .
+    h3 {
+        font-size: 1.2em;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+}
