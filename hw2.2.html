@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Homework 2 Part 2 for MEDP150 – Edited Images">
   <title>HW 2: Cropping and Resizing – Part 2</title>
-
   <link rel="stylesheet" href="styles.css">
 </head>
 
-  <script src="navbar.js"></script>
-
 <body>
 
+<!-- Navbar -->
 <nav class="nav">
-  <ul>
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <ul id="nav-links">
     <li><a href="hw2.html">Before Images</a></li>
     <li><a href="index.html">Home</a></li>
     <li><a href="readings.html">Reading Reflections</a></li>
@@ -27,29 +30,50 @@
   </ul>
 </nav>
 
-<div class="container">
+<h1>Homework 2: Cropping and Resizing – Part 2</h1>
 
-  <h1>Homework 2: Cropping and Resizing – Part 2</h1>
-  <h2>Edited Images</h2>
+<h2>Edited Images</h2>
 
-  <figure>
-    <img src="FireHoseAfter.jpg" alt="Edited fire hose image">
-    <figcaption><i>
-      This is my first cropped image. I added a hue of orange to match the theme of firefighting 
-      and add more drama. The photo’s dimensions were changed from landscape to 5"x7".
-    </i></figcaption>
-  </figure>
+<figure>
+  <img src="FireHoseAfter.jpg" alt="Edited fire hose image" width="400">
+  <figcaption><i>
+    This is my first cropped image. I added a hue of orange to match the theme of firefighting 
+    and add more drama. The photo’s dimensions were changed from landscape to 5"x7".
+  </i></figcaption>
+</figure>
 
-  <figure>
-    <img src="pianoafter.jpg" alt="Edited piano image">
-    <figcaption><i>
-      This is my second cropped image. Originally shot in landscape, I resized it to 1920x1080 
-      and converted it to black and white to emphasize drama. The piano strings remain a strong 
-      visual focal point.
-    </i></figcaption>
-  </figure>
+<figure>
+  <img src="pianoafter.jpg" alt="Edited piano image" width="800">
+  <figcaption><i>
+    This is my second cropped image. Originally shot in landscape, I resized it to 1920x1080 
+    and converted it to black and white to emphasize drama. The piano strings remain a strong 
+    visual focal point.
+  </i></figcaption>
+</figure>
 
-</div>
+<script>
+  // Hamburger toggle for mobile
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Hide navbar on scroll down, show on scroll up
+  let lastScrollTop = 0;
+  const nav = document.querySelector('.nav');
+
+  window.addEventListener('scroll', () => {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      nav.style.top = '-60px'; // adjust based on navbar height
+    } else {
+      nav.style.top = '0';
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  }, false);
+</script>
 
 </body>
 </html>
