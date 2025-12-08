@@ -1,106 +1,119 @@
-/* ===============================
-   Global Styles
-=============================== */
-
-
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
-
 body {
-    font-family: 'Comic Neue', cursive;
-    background-color: #f9f9f9;
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+    background-color: #fdf6e3;
     color: #222;
     line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
+/* Wrapper to contain content within window */
+.wrapper {
+    max-width: 1000px; /* restrict width for readability */
+    margin: 0 auto; /* center content */
+    padding: 1rem; /* space around content */
+    box-sizing: border-box;
+}
+
 h1, h2, h3 {
-    font-family: 'Comic Neue', cursive;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #1a1a1a;
-    margin-bottom: 0.5em;
+    font-family: 'Permanent Marker', cursive;
+    color: #d1495b;
+    margin: 1rem 0 0.5rem 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 p, i {
-    font-family: 'Comic Neue', cursive;
+    margin: 0.5rem 0;
 }
 
-/* ===============================
-   Navigation Styles
-=============================== */
+i {
+    color: #555;
+}
 
+/* ---------------------------------------
+   Images & Figures
+--------------------------------------- */
+img {
+    display: block;
+    max-width: 100%; /* scale images to fit container */
+    height: auto;
+    margin: 1rem auto;
+    border: 3px dashed #d1495b;
+    border-radius: 8px;
+}
+
+figure {
+    text-align: center;
+}
+
+figcaption {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.25rem;
+}
+
+/* ---------------------------------------
+   Navigation
+--------------------------------------- */
 .nav {
+    background-color: #ffcb77;
+    padding: 0.5rem;
     position: sticky;
     top: 0;
-    background-color: #fff;
-    padding: 10px 20px;
-    border-bottom: 3px dashed #333;
     z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .nav ul {
     list-style: none;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 15px;
     margin: 0;
     padding: 0;
 }
 
+.nav li {
+    margin: 0.5rem 1rem;
+}
+
 .nav a {
     text-decoration: none;
-    color: #000;
+    color: #222;
     font-weight: bold;
-    font-size: 1rem;
-    transition: transform 0.2s, color 0.2s;
+    transition: color 0.3s, transform 0.2s;
 }
 
 .nav a:hover {
-    color: #e63946;
-    transform: rotate(-2deg) scale(1.1);
+    color: #d1495b;
+    transform: scale(1.1);
 }
 
-/* ===============================
-   Image & Figure Styles
-=============================== */
-
-img {
-    border: 4px dashed #333;
-    padding: 4px;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
+/* ---------------------------------------
+   Responsive Layout
+--------------------------------------- */
+@media (max-width: 1024px) {
+    .wrapper {
+        padding: 0.8rem;
+    }
 }
 
-figure {
-    text-align: center;
-    margin: 20px 0;
-}
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
 
-figcaption {
-    font-family: 'Comic Neue', cursive;
-    font-style: italic;
-    color: #555;
-    margin-top: 5px;
-}
-
-/* ===============================
-   Miscellaneous Styles
-=============================== */
-
-a {
-    color: #e63946;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Optional playful touches */
-body::selection {
-    background-color: #e63946;
-    color: #fff;
-}
-
+    .
