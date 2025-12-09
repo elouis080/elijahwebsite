@@ -192,14 +192,17 @@ body::-webkit-scrollbar-thumb:hover {
 ========================= */
 .sidebar {
   position: fixed;
-  top: 60px;
+  top: 0;
   left: 0;
   width: 220px;
-  height: calc(100vh - 60px);
-  background: rgba(34,34,34,0.9);
+  height: 100vh;
+  background: rgba(34,34,34,0.95);
+  backdrop-filter: blur(6px); 
+  padding: 10px 10px;
+  box-sizing: border-box;
   overflow-y: auto;
   transition: width 0.3s ease;
-  z-index: 999;
+  z-index: 1000;
 }
 /* =========================
    Collapse Button
