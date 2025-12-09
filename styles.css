@@ -75,7 +75,7 @@ p, li, figcaption {
 }
 
 .nav a:hover {
-  background-color: #ff7f52;
+  background-color: #f2e3d5; /*this is the hover bg color*/
 }
 
 /* =========================
@@ -127,6 +127,7 @@ p, li, figcaption {
     top: 60px;                 /* just below navbar */
     right: 0px;               /*no offset */
     width: 200px;              /* menu width */
+    color: #fff; /*white text*/ 
     background-color: rgba(34, 34, 34, 0.95); /* semi transparent */
     backdrop-filter: blur(6px); /* optional frosted effect - MAYBE keep */
     padding: 10px;
