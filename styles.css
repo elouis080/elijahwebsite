@@ -179,8 +179,8 @@ Optional: small screens nav stacking
   /* Match the project's existing thumb gradient/colors */
   background: linear-gradient(to bottom,
     #ff0000 0%,  /* red */   
-    #ff8800 15%,  /* orange */
-    #ffff00 30%,  /* yellow */
+    #ff8800 5%,  /* orange */
+    #ffff00 15%,  /* yellow */
     #ffff00 40%,  /* lime */
     #00ff00 50%  /* green */     
   );
