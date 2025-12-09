@@ -4,13 +4,11 @@
 body {
   font-family: "Poppins", Arial, sans-serif; /* standard arial font */
   background-color: #1E1E1E;
-  color: ##E0E0E0; /*cream*/
-  margin: 20px;
+  color: #E0E0E0; /*cream*/
+  margin: 20px auto;
   padding-top: 60px;
   box-sizing: border-box;
   max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 h1, h2, h3 {
@@ -42,7 +40,7 @@ p, h1, h2, h3, li {
   left: 0;
   width: 100%; /* always stretch across window */
   z-index: 9999; 
-  background: 2B2B2B; /*transparent bg*/
+  background: #2B2B2B; /*transparent bg*/
   padding: 10px 20px;
   display: flex;
   justify-content: center;
