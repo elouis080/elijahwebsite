@@ -17,10 +17,8 @@ window.addEventListener('scroll', () => {
 });
 
 let timeout;
-
 window.addEventListener("scroll", () => {
   document.body.classList.add("show-scrollbar");
-
   clearTimeout(timeout);
   timeout = setTimeout(() => {
     document.body.classList.remove("show-scrollbar");
