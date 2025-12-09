@@ -4,7 +4,7 @@
 body {
   font-family: "Poppins", Arial, sans-serif; /* standard arial font */
   background-color: #2F4F6F; /*Navy Blue*/
-  color: #F2E3D5;
+  color: #F2E3D5; /*cream*/
   margin: 20px;
   padding-top: 60px;
   box-sizing: border-box;
@@ -41,13 +41,14 @@ p, h1, h2, h3, li {
   top: 0;
   left: 0;
   width: 100vw; /* allows for full viewport width */
+  color: 
   background-color: rgba(34, 34, 34, 0); /*transparent bg*/
   padding: 10px 0;
   z-index: 1000;
   display: flex;
   justify-content: center;
   backdrop-filter: blur(6px);
-  transition: top 0.5s ease, background-color 0.5s ease;
+  transition: top 0.3s ease, background-color 0.3s ease;
 }
 
 .nav.scrolled {
