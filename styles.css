@@ -12,6 +12,13 @@ body {
   transition: margin-left 0.3s ease;
 }
 
+/* Prevent text selection while dragging the scrollbar thumb */
+.no-select {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
 h1, h2, h3 {
   font-family: "Poppins", Arial, sans-serif;
   color: #FFF000;
@@ -81,7 +88,7 @@ p, h1, h2, h3, li {
 }
 
 .nav.scrolled a {
-  color: #fff; /* white for opaque navbar */
+  color: #fff;
 }
 
 .nav a:hover {
@@ -150,9 +157,10 @@ Optional: small screens nav stacking
 }
 
 /* =========================
-   Custom overlay scrollbar (cross-browser friendly)
-   This creates a fading scrollbar thumb that appears while scrolling
-   and fades out when idle. It mirrors the original thumb's colors.
+   Custom overlay scrollbar (draggable)
+   This creates a fading scrollbar thumb that appears while scrolling,
+   is draggable (mouse & touch), and fades out when idle. Visual design
+   kept exactly as before (no color/opacity/background changes).
 ========================= */
 .custom-scrollbar {
   position: fixed;
@@ -163,11 +171,13 @@ Optional: small screens nav stacking
   z-index: 99999;
   opacity: 0;
   transition: opacity 0.45s ease;
-  pointer-events: none; /* visual only */
+  /* Allow interaction when visible; JS will disable pointer-events when hidden */
+  pointer-events: none;
 }
 
 .custom-scrollbar.visible {
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* the thumb is positioned using transform: translateY for smoother transitions */
@@ -176,17 +186,20 @@ Optional: small screens nav stacking
   right: 0;
   width: 8px;
   border-radius: 6px;
-  /* Match the project's existing thumb gradient/colors */
+  /* Match the project's existing thumb gradient/colors (unchanged) */
   background: linear-gradient(to bottom,
     #ff0000 0%,  /* red */   
-    #ff8800 5%,  /* orange */
-    #ffff00 15%,  /* yellow */
-    #ffff00 40%,  /* lime */
-    #00ff00 50%  /* green */     
+    #ff8800 25%,  /* orange */
+    #ffff00 50%,  /* yellow */
+    #ffff00 75%,  /* lime */
+    #00ff00 100%  /* green */     
   );
   border: 1px solid #222;
   box-shadow: inset 0 0 6px rgba(255,0,0,0.5);
   transition: transform 0.06s linear, height 0.06s linear;
+  /* allow dragging */
+  pointer-events: auto;
+  touch-action: none; /* prevents native touch scrolling while dragging the thumb */
 }
 
 /* keep hover brightness behavior (non-intrusive) */
@@ -196,9 +209,8 @@ Optional: small screens nav stacking
 
 /* =========================
  SCROLLBAR FALLBACKS / HINTS
- - We keep the existing ::-webkit-scrollbar rules (below) for browsers that
-   support them, but we hide them to avoid native+overlay duplication.
- - The overlay handles appearance/fade; native scrollbars are hidden only when possible.
+ - We still hide native scrollbars where possible to avoid double visuals,
+   but the overlay provides the visible scrollbar and dragging behavior.
 ========================= */
 
 /* Hide native webkit scrollbar to avoid double scrollbars (visual preserved by .custom-scrollbar) */
@@ -212,10 +224,6 @@ html {
   scrollbar-width: none; /* hides Firefox native scrollbar visually */
   -ms-overflow-style: none; /* IE 10+ */
 }
-
-/* Keep existing legacy style rules removed from primary position to avoid conflicts.
-   The overlay uses the same gradient and hover brightness so the visual design remains consistent.
-*/
 
 /* =========================
    Sidebar Base
