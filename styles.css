@@ -102,10 +102,6 @@ p, li, figcaption {
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  #hamburger {
-    display: block;
-  }
-
   #nav-links {
     display: none; /*hidden by default*/
     flex-direction: column; /*vertical menu*/
