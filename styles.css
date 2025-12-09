@@ -151,11 +151,15 @@ Optional: small screens nav stacking
 
 /* SCROLLBAR APPEARANCE (hidden until scrolling) */
 body::-webkit-scrollbar {
-  width: 0px;
+  width: 8px;
+  background: #0a0a0a;
+  opacity: 0;
+  border-radius: 4px;
+  transition: opacity 0.3s ease; 
 }
 
 body.show-scrollbar::-webkit-scrollbar {
-  width: 8px;
+  opacity: 1;
 }
 
 /* TRACK (console casing) */
