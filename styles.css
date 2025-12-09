@@ -9,7 +9,7 @@ body {
   padding-top: 60px;
   box-sizing: border-box;
   max-width: 1000px;
-  transition: margin-left 0.3 ease;
+  transition: margin-left 0.3s ease;
 }
 
 h1, h2, h3 {
@@ -246,7 +246,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .accordion-content {
-  max height: 0;
+  max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease; 
 }
