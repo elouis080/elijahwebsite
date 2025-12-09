@@ -24,3 +24,27 @@ window.addEventListener("scroll", () => {
     document.body.classList.remove("show-scrollbar");
   }, 800);
 });
+
+// ========== Accordion ==========
+document.querySelectorAll(".accordion-header").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const content = btn.nextElementSibling;
+
+    content.style.display =
+      content.style.display === "block" ? "none" : "block";
+
+    // Toggle arrow
+    btn.innerHTML = btn.innerHTML.includes("▾")
+      ? btn.innerHTML.replace("▾", "▸")
+      : btn.innerHTML.replace("▸", "▾");
+  });
+});
+
+// ========== Sidebar Collapse ==========
+const sidebar = document.getElementById("sidebar");
+const toggle = document.getElementById("sidebarToggle");
+
+toggle.addEventListener("click", () => {
+  sidebar.classList.toggle("collapsed");
+  document.body.classList.toggle("sidebar-collapsed");
+});
