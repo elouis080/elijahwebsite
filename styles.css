@@ -4,7 +4,7 @@
 body {
   font-family: "Poppins", Arial, sans-serif; /* standard arial font */
   background-color: #1E1E1E;
-  color: #E0E0E0; /*cream*/
+  color: #FFF000; /*cream*/
   margin: 10px auto;
   padding-top: 60px;
   box-sizing: border-box;
@@ -80,7 +80,7 @@ p, h1, h2, h3, li {
 }
 
 .nav a:hover {
-  color: #ff7f52;
+  color: #FFF000;
 }
 
 /* =========================
