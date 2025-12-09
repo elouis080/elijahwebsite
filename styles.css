@@ -81,23 +81,9 @@ p, li, figcaption {
 /* =========================
    Hamburger Styles
 ========================= */
-#hamburger-static {
-  position: static;
-  top: 10px;
-  right: 20px;
-  font-size: 2rem;
-  transition: top 0.3s ease, background-color 0.3s ease;
-  cursor: pointer;
-  display: auto; /* hidden by default */
-  z-index: 1001;
-}
-
-#hamburger-static.show {
-  display: block;
-}
 
 #hamburger {
-  display: auto; /* hidden on desktop */
+  display: inline-block; 
   font-size: 2rem;
   cursor: pointer;
   margin-left: 20px;
