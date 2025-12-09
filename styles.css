@@ -2,7 +2,7 @@
    Global Styles
 ========================= */
 body {
-  font-family: "Courier", "Courier New", monospace; /* standard arial font */
+  font-family: "Poppins", Arial, sans-serif; /* standard arial font */
   background-color: ##1E1E1E;
   color: ##E0E0E0; /*cream*/
   margin: 20px;
@@ -14,7 +14,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: "Courier", "Courier New", monospace;
+  font-family: "Poppins", Arial, sans-serif;
   color: #FFFFFF;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
@@ -22,15 +22,15 @@ h1, h2, h3 {
 }
 
 p, li, figcaption {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 2rem;
+  line-height: 2.0;
 }
 
 /* =========================
    Global Text Visibility
 ========================= */
 p, h1, h2, h3, li {
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
 }
 
 /* =========================
