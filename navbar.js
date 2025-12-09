@@ -27,3 +27,14 @@ window.addEventListener('scroll', () => {
   }
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
+
+let timeout;
+
+window.addEventListener("scroll", () => {
+  document.body.classList.add("show-scrollbar");
+
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    document.body.classList.remove("show-scrollbar");
+  }, 800);
+});
