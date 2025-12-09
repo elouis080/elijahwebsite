@@ -2,8 +2,8 @@
    Global Styles
 ========================= */
 body {
-  font-family: "Poppins", Arial, sans-serif; /* playful yet readable */
-  background-color: #f2e3d5; /* warm beighe with creamy tone */
+  font-family: "Poppins", Arial, sans-serif; /* standard arial font */
+  background-color: #f2e3d5; /* warm beige */
   color: #222;
   margin: 0;
   padding-top: 60px;
@@ -33,7 +33,7 @@ p, li, figcaption {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw; /* allows for full viewport width */
   background-color: rgba(34, 34, 34, 0);
   padding: 10px 0;
   z-index: 1000;
