@@ -31,50 +31,58 @@ p, li, figcaption {
 ========================= */
 .nav {
   position: fixed;
-  width: 100%;
-  background-color: #222;
   top: 0;
   left: 0;
+  width: 100%;
+  background-color: rgba(34, 34, 34, 0);
+  padding: 10px 0;
   z-index: 1000;
+
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+
+  backdrop-filter: blur(6px);
   transition: top 0.3s ease;
 }
 
+.nav.scrolled {
+   background-color: rgba(34, 34, 34, 0.95);
+}
 .nav ul {
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.nav ul li {
+.nav li {
   margin: 0 10px;
 }
 
-.nav ul li a {
+.nav a {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
   padding: 8px 12px;
-  transition: background-color 0.3s, color 0.3s;
   border-radius: 5px;
+
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  transition: background-color 0.3s, color 0.3s; 
 }
 
-.nav ul li a:hover {
+.nav a:hover {
   background-color: #ff7f52;
-  color: #fff;
 }
 
+/* Mobile nav toggle (hidden by default) */
 #nav-links {
-  display: none; /* hidden by default on small screens */
+  display: none;
 }
 
 #nav-links.show {
-  display: flex; /* or block depending on layout */
+  display: flex;
 }
 
 /* =========================
@@ -104,15 +112,9 @@ figcaption {
    Responsive Typography
 ========================= */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 1.8rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
-  h3 {
-    font-size: 1.2rem;
-  }
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
   p, li, figcaption {
     font-size: 0.95rem;
   }
@@ -125,8 +127,10 @@ figcaption {
   body {
    padding-top: 100px;
   }
+  .nav ul li a {
+    padding: 6px 8px; /* smaller padding for tiny screens */
+  }
 }
-
 @media (min-width: 768px) {
   #nav-links {
     display: flex !important; /* always visible on larger screens */
