@@ -2,14 +2,15 @@
    Global Styles
 ========================= */
 body {
-  font-family: "Poppins", Arial, sans-serif;
-  background-color: #f0f0f5;
-  color: #222;
   margin: 0;
-  padding-top: 60px; /* reserve space for fixed nav */
+  padding: 0;
+  box-sizing: border-box;
+}
+.main-container {
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  padding: 1rem; /* ensures borders stay inside */
+  border: 2px solid black; /* your border */
 }
 
 h1, h2, h3 {
