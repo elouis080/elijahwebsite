@@ -120,9 +120,7 @@ figcaption {
   h1 { font-size: 1.8rem; }
   h2 { font-size: 1.5rem; }
   h3 { font-size: 1.2rem; }
-  p, li, figcaption {
-    font-size: 0.95rem;
-  }
+  p, li, figcaption { font-size: 0.95rem; }
 }
 
 /* =========================
