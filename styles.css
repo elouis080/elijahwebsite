@@ -49,7 +49,7 @@ p, li, figcaption {
 
 .nav ul {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   list-style: none;
   margin: 0;
