@@ -190,7 +190,7 @@ Optional: small screens nav stacking
   background: linear-gradient(to bottom,
     #ff0000 0%,  /* red */   
     #ff8800 25%,  /* orange */
-    #ffff00 40%,  /* yellow */
+    #ffff00 30%,  /* yellow */
     #ffff00 50%,  /* lime */
     #00ff00 100%  /* green */     
   );
