@@ -63,7 +63,7 @@ p, li, figcaption {
 
 .nav a {
   text-decoration: none;
-  color: #fff;
+  color: #000;
   font-weight: bold;
   padding: 8px 12px;
   border-radius: 5px;
@@ -71,6 +71,11 @@ p, li, figcaption {
   font-size: clamp(0.7rem, 1.5vw, 1rem);
   transition: background-color 0.3s, color 0.3s; 
 }
+
+.nav.scrolled a {
+  color: #fff; /* white for opaque navbar */
+}
+
 
 .nav a:hover {
   background-color: #ff7f52;
