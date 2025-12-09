@@ -173,3 +173,34 @@ figcaption {
     display: flex;
   }
 }
+
+/* Base: scrollbar hidden until scrolling */
+body::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.show-scrollbar::-webkit-scrollbar {
+  opacity: 1;
+}
+
+/* Track — dark console background */
+body::-webkit-scrollbar-track {
+  background: #111; /* deep terminal black */
+  border-left: 2px solid #0f0; /* green bezel for console look */
+}
+
+/* Thumb — glowing green meter */
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(#0f0, #0c0);
+  border: 2px solid #030;
+  border-radius: 0;
+  box-shadow: 0 0 8px #0f0 inset;
+}
+
+/* Optional: square corners like old terminals */
+body::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(#0c0, #0f0);
+}
