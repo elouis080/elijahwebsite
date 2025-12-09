@@ -2,15 +2,15 @@
    Global Styles
 ========================= */
 body {
+  font-family: "Poppins", Arial, sans-serif; /* playful yet readable */
+  background-color: #f0f0f5; /* soft neutral background */
+  color: #222;
   margin: 0;
-  padding: 0;
+  padding: 60px 20px 20px 20px; /* top padding for fixed nav */
   box-sizing: border-box;
-}
-.main-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem; /* ensures borders stay inside */
-  border: 2px solid black; /* your border */
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1, h2, h3 {
@@ -28,35 +28,26 @@ p, li, figcaption {
 ========================= */
 .nav {
   width: 100%;
+  background-color: #222;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #222;
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  transition: top 0.3s;
-}
-
-.nav .logo {
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.2rem;
+  justify-content: center;
+  padding: 10px 0;
 }
 
 .nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav ul li {
-  position: relative;
   margin: 0 10px;
 }
 
@@ -65,102 +56,25 @@ p, li, figcaption {
   color: #fff;
   font-weight: bold;
   padding: 8px 12px;
-  display: block;
-  border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
 }
 
 .nav ul li a:hover {
   background-color: #ff7f50;
-}
-
-/* Dropdown styles */
-.nav ul li ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  border-radius: 5px;
-  min-width: 180px;
-}
-
-.nav ul li:hover > ul {
-  display: block;
-}
-
-.nav ul li ul li a {
-  padding: 8px 15px;
-  font-weight: normal;
   color: #fff;
-}
-
-.nav ul li ul li a:hover {
-  background-color: #ff7f50;
-}
-
-/* =========================
-   Hamburger Menu (Mobile)
-========================= */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background-color: #fff;
-  transition: all 0.3s;
-}
-
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-
-  .nav ul {
-    position: fixed;
-    top: 60px;
-    left: -100%;
-    width: 100%;
-    height: calc(100vh - 60px);
-    flex-direction: column;
-    background-color: #222;
-    align-items: center;
-    justify-content: flex-start;
-    transition: left 0.3s;
-    padding-top: 20px;
-  }
-
-  .nav ul.show {
-    left: 0;
-  }
-
-  .nav ul li {
-    margin: 10px 0;
-  }
-
-  .nav ul li ul {
-    position: static;
-  }
 }
 
 /* =========================
    Images and Figures
 ========================= */
 img {
-  max-width: 100%;
+  max-width: 70%;
   height: auto;
   display: block;
   margin: 10px auto;
-  border-radius: 5px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 }
 
 figure {
@@ -179,8 +93,29 @@ figcaption {
    Responsive Typography
 ========================= */
 @media (max-width: 768px) {
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.2rem; }
-  p, li, figcaption { font-size: 0.95rem; }
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  p, li, figcaption {
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================
+   Optional: small screens nav stacking
+========================= */
+@media (max-width: 500px) {
+  .nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav ul li {
+    margin: 5px 0;
+  }
 }
