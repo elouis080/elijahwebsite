@@ -40,11 +40,10 @@ p, h1, h2, h3, li {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; /* allows for full viewport width */
-  color: 
-  background-color: 2B2B2B; /*transparent bg*/
-  padding: 10px 0;
-  z-index: 1000;
+  width: 100%; /* always stretch across window */
+  z-index: 9999; 
+  background: 2B2B2B; /*transparent bg*/
+  padding: 10px 20px;
   display: flex;
   justify-content: center;
   backdrop-filter: blur(6px);
