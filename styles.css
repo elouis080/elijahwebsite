@@ -30,7 +30,7 @@ p, li, figcaption {
    Navigation Bar
 ========================= */
 .nav {
-  position: sticky;
+  position: relative;
   top: 0;
   left: 0;
   width: 100vw; /* allows for full viewport width */
