@@ -183,8 +183,8 @@ Optional: small screens nav stacking
   border-radius: 6px;
   background: linear-gradient(to bottom,
     #ff0000 0%, 
-    #ff8800 15%,
-    #ffff00 20%,
+    #ff8800 5%,
+    #ffff00 15%,
     #00ff00 30%
   );
   border: 1px solid #222;
