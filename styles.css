@@ -158,7 +158,7 @@ figcaption {
 }
 
 /* =========================
-   Optional: small screens nav stacking
+Optional: small screens nav stacking
 ========================= */
 @media (max-width: 500px) {
   body {
@@ -174,9 +174,10 @@ figcaption {
   }
 }
 
-/* Base: scrollbar hidden until scrolling */
+/* Toolbar controls */
+/* Hidden until scrolling */
 body::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
   background: transparent;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -186,21 +187,41 @@ body.show-scrollbar::-webkit-scrollbar {
   opacity: 1;
 }
 
-/* Track — dark console background */
+/* TRACK — dark console casing */
 body::-webkit-scrollbar-track {
-  background: #111; /* deep terminal black */
-  border-left: 2px solid #0f0; /* green bezel for console look */
+  background: #0a0a0a;
+  border-left: 2px solid #700; /* danger red trim */
+  box-shadow: 0 0 6px #400 inset;
 }
 
-/* Thumb — glowing green meter */
+/* THUMB — unstable, clipping meter look */
 body::-webkit-scrollbar-thumb {
-  background: linear-gradient(#0f0, #0c0);
-  border: 2px solid #030;
+  background: repeating-linear-gradient(
+    to bottom,
+    #f00 0px,
+    #f33 4px,
+    #f00 8px
+  ); /* jittery stripes */
+  border: 2px solid #900;
   border-radius: 0;
-  box-shadow: 0 0 8px #0f0 inset;
+  box-shadow:
+    0 0 6px #f00 inset,    /* inner glow */
+    0 0 4px #f00;          /* outer danger glow */
+  animation: clipPulse 0.12s infinite alternate;
 }
 
-/* Optional: square corners like old terminals */
-body::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(#0c0, #0f0);
+/* Flicker / clipping effect */
+@keyframes clipPulse {
+  0% {
+    transform: translateX(0);
+    box-shadow:
+      0 0 6px #f00 inset,
+      0 0 4px #f00;
+  }
+  100% {
+    transform: translateX(-1px); /* micro jitter */
+    box-shadow:
+      0 0 10px #f33 inset,
+      0 0 8px #f00;
+  }
 }
