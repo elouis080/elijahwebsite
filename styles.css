@@ -192,14 +192,11 @@ body::-webkit-scrollbar-thumb:hover {
 ========================= */
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 60px;
   left: 0;
   width: 220px;
-  height: 100vh;
+  height: calc(100vh - 60px);
   background: rgba(34,34,34,0.9);
-  backdrop-filter: blur(6px);
-  padding: 20px 10px;
-  box-sizing: border-box;
   overflow-y: auto;
   transition: width 0.3s ease;
   z-index: 9999;
@@ -276,7 +273,10 @@ body::-webkit-scrollbar-thumb:hover {
   display: none !important;
 }
 
-body.sidebar-collapsed {
+body.sidebar-collapsed main {
   margin-left: 60px;
 }
-
+main {
+  margin-left: 220px; /* default sidebar width */
+  transition: margin-left 0.3s ease;
+}
