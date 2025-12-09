@@ -3,8 +3,8 @@
 ========================= */
 body {
   font-family: "Poppins", Arial, sans-serif; /* standard arial font */
-  background-color: #2F4F6F; /*Navy Blue*/
-  color: #F2E3D5; /*cream*/
+  background-color: ##1E1E1E;
+  color: ##E0E0E0; /*cream*/
   margin: 20px;
   padding-top: 60px;
   box-sizing: border-box;
@@ -42,7 +42,7 @@ p, h1, h2, h3, li {
   left: 0;
   width: 100vw; /* allows for full viewport width */
   color: 
-  background-color: rgba(34, 34, 34, 0); /*transparent bg*/
+  background-color: 2B2B2B; /*transparent bg*/
   padding: 10px 0;
   z-index: 1000;
   display: flex;
