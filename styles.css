@@ -181,7 +181,7 @@ Optional: small screens nav stacking
     #ff0000 0%,  /* red */   
     #ff8800 25%,  /* orange */
     #ffff00 50%,  /* yellow */
-    #ffff00 75%,  /* lime */
+    #ffff00 60%,  /* lime */
     #00ff00 100%  /* green */     
   );
   border: 1px solid #222;
