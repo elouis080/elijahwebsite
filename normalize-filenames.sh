@@ -32,25 +32,33 @@ COUNTER=0
 echo "Running in $( $DRY_RUN && echo "DRY-RUN" || echo "APPLY" ) mode from: $ROOT_DIR"
 echo
 
+# Create secure temporary files
+TMP_REF_FILE=$(mktemp)
+TMP_TRACKED_FILE=$(mktemp)
+TMP_REF_TMP=$(mktemp)
+
+# Ensure cleanup on exit
+trap 'rm -f "$TMP_REF_FILE" "$TMP_TRACKED_FILE" "$TMP_REF_TMP" 2>/dev/null || true' EXIT
+
 # 1) Extract referenced asset paths from HTML (src/href)
 # Using a simpler grep pattern that works across different grep versions
-grep -roh 'src="[^"]*"' --include='*.html' . | sed 's/src="//;s/"$//' > /tmp/referenced-files.$$.tmp || true
-grep -roh "src='[^']*'" --include='*.html' . | sed "s/src='//;s/'$//" >> /tmp/referenced-files.$$.tmp || true
-grep -roh 'href="[^"]*"' --include='*.html' . | sed 's/href="//;s/"$//' >> /tmp/referenced-files.$$.tmp || true
-grep -roh "href='[^']*'" --include='*.html' . | sed "s/href='//;s/'$//" >> /tmp/referenced-files.$$.tmp || true
+grep -roh 'src="[^"]*"' --include='*.html' . | sed 's/src="//;s/"$//' > "$TMP_REF_TMP" || true
+grep -roh "src='[^']*'" --include='*.html' . | sed "s/src='//;s/'$//" >> "$TMP_REF_TMP" || true
+grep -roh 'href="[^"]*"' --include='*.html' . | sed 's/href="//;s/"$//' >> "$TMP_REF_TMP" || true
+grep -roh "href='[^']*'" --include='*.html' . | sed "s/href='//;s/'$//" >> "$TMP_REF_TMP" || true
 
-cat /tmp/referenced-files.$$.tmp \
+cat "$TMP_REF_TMP" \
   | sed 's#^\./##' \
   | grep -vE '^(https?:|mailto:|#)' \
-  | sort -u > /tmp/referenced-files.$$ || true
+  | sort -u > "$TMP_REF_FILE" || true
 
-rm -f /tmp/referenced-files.$$.tmp 2>/dev/null || true
+rm -f "$TMP_REF_TMP" 2>/dev/null || true
 
 # 2) List tracked files
-git ls-files > /tmp/tracked-files.$$ 
+git ls-files > "$TMP_TRACKED_FILE" 
 
 echo "Found referenced files (from HTML):"
-cat /tmp/referenced-files.$$ | sed 's/^/  - /' || true
+cat "$TMP_REF_FILE" | sed 's/^/  - /' || true
 echo
 echo "Checking referenced files against tracked files..."
 echo
@@ -72,7 +80,7 @@ while IFS= read -r ref; do
   fi
 
   # If exact match exists in tracked files, nothing to do
-  if grep -Fxq "$ref_path" /tmp/tracked-files.$$; then
+  if grep -Fxq "$ref_path" "$TMP_TRACKED_FILE"; then
     continue
   fi
 
@@ -82,11 +90,11 @@ while IFS= read -r ref; do
   lower_ref=$(echo "$ref_path" | tr '[:upper:]' '[:lower:]')
 
   # Find case-insensitive exact matches
-  matches=$(awk -v r="$lower_ref" 'BEGIN{IGNORECASE=1} { if(tolower($0)==r) print $0 }' /tmp/tracked-files.$$)
+  matches=$(awk -v r="$lower_ref" 'BEGIN{IGNORECASE=1} { if($0==r) print $0 }' "$TMP_TRACKED_FILE")
 
   # If none, try contains (substring) case-insensitive matches (to catch path differences)
   if [[ -z "$matches" ]]; then
-    matches=$(awk -v r="$lower_ref" 'BEGIN{IGNORECASE=1} { if(index(tolower($0), r)) print $0 }' /tmp/tracked-files.$$)
+    matches=$(awk -v r="$lower_ref" 'BEGIN{IGNORECASE=1} { if(index(tolower($0), r)) print $0 }' "$TMP_TRACKED_FILE")
   fi
 
   if [[ -z "$matches" ]]; then
@@ -117,7 +125,7 @@ while IFS= read -r ref; do
   tmp_name="${TMP_PREFIX}${COUNTER}"
   ACTIONS+=("$tracked_file|$tmp_name|$ref_path")
 
-done < /tmp/referenced-files.$$
+done < "$TMP_REF_FILE"
 
 # Check if ACTIONS array has any elements
 # Use a workaround for bash strict mode with arrays
@@ -129,8 +137,6 @@ if [[ $actions_count -eq 0 ]]; then
   echo
   echo "Skipped items summary:"
   printf '%s\n' "${SKIPPED[@]}" || true
-  # cleanup
-  rm -f /tmp/referenced-files.$$ /tmp/tracked-files.$$ 2>/dev/null || true
   exit 0
 fi
 
@@ -146,8 +152,6 @@ echo
 if $DRY_RUN; then
   echo "DRY-RUN: No changes made. To perform these renames, re-run with --apply."
   echo "After running with --apply, review with 'git status', then git add -A; git commit -m \"Normalize filenames\"; git push"
-  # cleanup
-  rm -f /tmp/referenced-files.$$ /tmp/tracked-files.$$ 2>/dev/null || true
   exit 0
 fi
 
@@ -173,6 +177,4 @@ done
 echo
 echo "Renames complete. Review changes with 'git status'."
 echo "To commit: git add -A && git commit -m \"Normalize filenames (case fix)\" && git push"
-# cleanup
-rm -f /tmp/referenced-files.$$ /tmp/tracked-files.$$ 2>/dev/null || true
 exit 0
