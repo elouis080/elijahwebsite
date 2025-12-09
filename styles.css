@@ -246,10 +246,14 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .accordion-content {
-  list-style: none;
-  padding-left: 10px;
-  margin: 0;
-  display: none;
+  max height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease; 
+}
+
+/* When open, apply a class via JS */
+.accordion-content.open {
+  max-height: 500px; /* large enough to fit content */
 }
 
 .accordion-content li a {
