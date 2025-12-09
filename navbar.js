@@ -19,20 +19,3 @@ window.addEventListener('scroll', () => {
   }
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
-
-let lastScrollTop = 0;
-const nav = document.querySelector(".nav");
-
-window.addEventListener("scroll", () => {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  
-  if (scrollTop > lastScrollTop) {
-    // scrolling down
-    nav.style.top = "-80px"; // adjust depending on navbar height
-  } else {
-    // scrolling up
-    nav.style.top = "0";
-  }
-  
-  lastScrollTop = scrollTop;
-});
