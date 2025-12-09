@@ -15,7 +15,7 @@ body {
 
 h1, h2, h3 {
   font-family: "Poppins", Arial, sans-serif;
-  color: #F2E3D5;
+  color: #FFFFFF;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
   line-height: 1.2;
@@ -83,7 +83,7 @@ p, h1, h2, h3, li {
 }
 
 .nav a:hover {
-  background-color: #ff7f52;
+  color: #00A0FF;
 }
 
 /* =========================
