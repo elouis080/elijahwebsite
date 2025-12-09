@@ -149,10 +149,9 @@ Optional: small screens nav stacking
 
 /* SCROLLBAR APPEARANCE (hidden until scrolling) */
 body::-webkit-scrollbar {
-  width: 14px;
-  background: transparent;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  width: 8px;
+  background: #0a0a0a;
+  border-radius: 4px;
 }
 
 body.show-scrollbar::-webkit-scrollbar {
@@ -162,17 +161,20 @@ body.show-scrollbar::-webkit-scrollbar {
 /* TRACK (console casing) */
 body::-webkit-scrollbar-track {
   background: #0a0a0a;
-  border-left: 2px solid #222;
-  box-shadow: inset 0 0 6px #000;
+  border-radius: 4px;
+  box-shadow: inset 0 0 3px #000;
 }
 
 /* Thumb with clipping/flicker effect */
 body::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #ff0000, #ffff00, #00c200);
-  border: 2px solid #222;
-  border-radius: 0;
+  border: 1px solid #222;
+  border-radius: 4px;
   box-shadow: inset 0 0 6px rgba(255,0,0,0.5);
   animation: clipPulse 0.15s infinite alternate;
+}
+body::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);          /* slightly brighter on hover */
 }
 
 @keyframes clipPulse {
