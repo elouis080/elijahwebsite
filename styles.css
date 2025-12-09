@@ -2,7 +2,7 @@
    Global Styles
 ========================= */
 body {
-  font-family: "Poppins", Arial, sans-serif; /* standard arial font */
+  font-family: "Courier", "Courier New", monospace; /* standard arial font */
   background-color: ##1E1E1E;
   color: ##E0E0E0; /*cream*/
   margin: 20px;
@@ -14,7 +14,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Courier", "Courier New", monospace;
   color: #FFFFFF;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
