@@ -34,7 +34,7 @@ p, li, figcaption {
   top: 0;
   left: 0;
   width: 100vw; /* allows for full viewport width */
-  background-color: rgba(34, 34, 34, 0);
+  background-color: rgba(34, 34, 34, 0); /*transparent bg*/
   padding: 10px 0;
   z-index: 1000;
   display: flex;
@@ -62,7 +62,7 @@ p, li, figcaption {
 
 .nav a {
   text-decoration: none;
-  color: #4B2E2E;
+  color: #000;
   font-weight: bold;
   padding: 6px 10px;
   border-radius: 5px;
@@ -88,7 +88,7 @@ p, li, figcaption {
   font-size: 2rem;
   transition: top 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
-  display: none; /* hidden by default */
+  display: auto; /* hidden by default */
   z-index: 1001;
 }
 
@@ -97,7 +97,7 @@ p, li, figcaption {
 }
 
 #hamburger {
-  display: none; /* hidden on desktop */
+  display: auto; /* hidden on desktop */
   font-size: 2rem;
   cursor: pointer;
   margin-left: 20px;
@@ -138,17 +138,8 @@ p, li, figcaption {
   }
 
   #nav-links li {
-    margin: 10px 0; /*smaller spacing for vertical menu*/
+    margin: 20px 0; /*smaller spacing for vertical menu*/
   }
-}
-
-#nav-links a {
-  color: #fff; /* white text */
-}
-
-#nav-links a:hover {
-  background-color: #ff7f52; /* optional hover color */
-  color: #fff; /* keep text white on hover */
 }
 
 /* =========================
