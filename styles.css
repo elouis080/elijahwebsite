@@ -291,3 +291,17 @@ main {
   margin-left: 220px; /* default sidebar width */
   transition: margin-left 0.3s ease;
 }
+
+/* =========================
+   Main Container Centering
+========================= */
+main.container {
+  max-width: 1000px; /* limits width for readability */
+  margin: 0 auto;    /* centers horizontally */
+  padding: 20px;     /* optional spacing */
+  transition: margin-left 0.3s ease; /* adjusts with sidebar collapse */
+}
+
+body.sidebar-collapsed main.container {
+  margin-left: auto; /* remove extra margin when sidebar is collapsed */
+}
