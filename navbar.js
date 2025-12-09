@@ -5,6 +5,8 @@
 // Top navbar hide on scroll
 let lastScrollTop = 0;
 const nav = document.querySelector('.nav');
+const navLinks = document.getElementById('nav-links');
+
 
 window.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
