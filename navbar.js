@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
 
 // Hide on scroll down/ show on scroll up
   if (scrollTop > lastScrollTop && scrollTop > 50) {
-    nav.style.top = '${nav.offsetHeight}px'; // fully hide
+    nav.style.top = `-${nav.offsetHeight}px`; // fully hide
   } else {
     nav.style.top = "0"; // show
   }
