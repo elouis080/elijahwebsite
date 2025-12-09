@@ -20,7 +20,7 @@ window.addEventListener('scroll', () => {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
 // Hide on scroll down/ show on scroll up
-  if (scrollTop > lastScrollTop && scrollTop > 50) {
+  if (scrollTop > lastScrollTop && scrollTop > 20) {
     nav.style.top = `-${nav.offsetHeight}px`; // fully hide
   } else {
     nav.style.top = "0"; // show
