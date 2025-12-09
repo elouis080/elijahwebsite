@@ -12,6 +12,15 @@ hamburger.addEventListener('click', () => {
 // Hide navbar on scroll down
 window.addEventListener('scroll', () => {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+// for disappearing navbar 
+  if (scrollTop > 20) {
+  nav.classList.add('scrolled');
+} else {
+  nav.classList.remove('scrolled');
+}
+
+
   if (scrollTop > lastScrollTop && scrollTop > 50) {
     nav.style.top = "-60px"; // hide
   } else {
