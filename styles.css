@@ -3,7 +3,7 @@
 ========================= */
 body {
   font-family: "Poppins", Arial, sans-serif; /* standard arial font */
-  background-color: #f2e3d5; /* warm beige */
+  background-color: #2F4F6F; /*Navy Blue*/
   color: #222;
   margin: 0;
   padding-top: 60px;
@@ -24,6 +24,13 @@ h1, h2, h3 {
 p, li, figcaption {
   font-size: 1rem;
   line-height: 1.6;
+}
+
+/* =========================
+   Global Text Visibility
+========================= */
+* {
+  text-shadow: 0 0 3px #000, 0 0 6px #000;
 }
 
 /* =========================
