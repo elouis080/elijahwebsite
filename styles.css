@@ -27,6 +27,7 @@ p, li, figcaption {
    Navigation Bar
 ========================= */
 .nav {
+  position: fixed;
   width: 100%;
   background-color: #222;
   top: 0;
@@ -35,6 +36,7 @@ p, li, figcaption {
   display: flex;
   justify-content: center;
   padding: 10px 0;
+  transition: top 0.3s ease;
 }
 
 .nav ul {
@@ -62,6 +64,14 @@ p, li, figcaption {
 .nav ul li a:hover {
   background-color: #ff7f52;
   color: #fff;
+}
+
+#nav-links {
+  display: none; /* hidden by default on small screens */
+}
+
+#nav-links.show {
+  display: flex; /* or block depending on layout */
 }
 
 /* =========================
@@ -111,5 +121,11 @@ figcaption {
 @media (max-width: 500px) {
   body {
    padding-top: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  #nav-links {
+    display: flex !important; /* always visible on larger screens */
   }
 }
