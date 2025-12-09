@@ -68,3 +68,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// Minimal sidebar helper (non-visual, avoids 404s)
+// Adds accessible aria-expanded behavior for the sidebar toggle.
+// Does not change styling or colors.
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('sidebar');
+
+  if (!toggle) return;
+
+  // set initial aria-expanded
+  const isCollapsed = sidebar && sidebar.classList.contains('collapsed');
+  toggle.setAttribute('aria-expanded', (!isCollapsed).toString());
+
+  // update aria-expanded attribute on click (keeps in sync with other scripts)
+  toggle.addEventListener('click', () => {
+    const current = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', (!current).toString());
+  });
+});
