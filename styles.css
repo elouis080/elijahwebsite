@@ -86,17 +86,6 @@ p, li, figcaption {
 }
 
 /* =========================
-   Hamburger Styles
-========================= */
-
-#hamburger {
-  display: inline-block; 
-  font-size: 2rem;
-  cursor: pointer;
-  margin-left: 20px;
-}
-
-/* =========================
    Nav Links
 ========================= */
 #nav-links {
@@ -107,29 +96,6 @@ p, li, figcaption {
   display: flex;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  #nav-links {
-    display: none; /*hidden by default*/
-    flex-direction: column; /*vertical menu*/
-    position: fixed;           /* floating over content */
-    top: 60px;                 /* just below navbar */
-    right: 0px;               /*no offset */
-    width: 200px;              /* menu width */
-    background-color: rgba(34, 34, 34, 0.95); /* semi transparent */
-    backdrop-filter: blur(6px); /* optional frosted effect - MAYBE keep */
-    padding: 10px;
-    z-index: 1002; /*places above all content*/
-  }
-
-  #nav-links.show {
-    display: flex;  /*shown when hamburger clicked*/
-  }
-
-  #nav-links li {
-    margin: 20px 0; /*smaller spacing for vertical menu*/
-  }
-}
 
 /* =========================
    Images and Figures
