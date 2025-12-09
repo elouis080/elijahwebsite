@@ -13,16 +13,16 @@ hamburger.addEventListener('click', () => {
 window.addEventListener('scroll', () => {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-// for disappearing navbar 
+// Transparent --> opaque background
   if (scrollTop > 20) {
   nav.classList.add('scrolled');
 } else {
   nav.classList.remove('scrolled');
 }
 
-
+// Hide on scroll down/ show on scroll up
   if (scrollTop > lastScrollTop && scrollTop > 50) {
-    nav.style.top = "-60px"; // hide
+    nav.style.top = '${nav.offsetHeight}px'; // fully hide
   } else {
     nav.style.top = "0"; // show
   }
