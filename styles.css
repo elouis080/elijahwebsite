@@ -6,7 +6,7 @@ body {
   background-color: #f0f0f5; /* soft neutral background */
   color: #222;
   margin: 0;
-  padding: 60px 20px 20px 20px; /* top padding for fixed nav */
+  padding: 60px;
   box-sizing: border-box;
   max-width: 350px;
   margin-left: auto;
