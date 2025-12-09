@@ -42,7 +42,7 @@ p, li, figcaption {
   justify-content: center;
 
   backdrop-filter: blur(6px);
-  transition: top 0.3s ease;
+  transition: top 0.3s ease, background-color 0.3s ease;
 }
 
 .nav.scrolled {
