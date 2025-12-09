@@ -122,14 +122,14 @@ p, li, figcaption {
   #nav-links {
     display: none;
     flex-direction: column;
-    background-color: #222;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 200px;
-    height: 100vh;
-    padding-top: 60px;
-    z-index: 1000;
+    position: fixed;           /* floating over content */
+    top: 60px;                 /* just below navbar */
+    right: 10px;               /*offset from right */
+    width: 200px;              /* menu width */
+    background-color: rgba(34, 34, 34, 0.8); /* semi-transparent */ 
+    backdrop-filter: blur(6px); /* optional frosted effect - MAYBE keep */
+    padding: 10px;
+    z-index: 1002; /*places above all content*/
   }
 
   #nav-links.show {
@@ -137,7 +137,7 @@ p, li, figcaption {
   }
 
   #nav-links li {
-    margin: 20px 0;
+    margin: 10px 0; /*smaller spacing for floating menu*/
   }
 }
 
