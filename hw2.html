@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Homework 2 Part 1 for MEDP150 – Cropping and Resizing">
   <title>HW 2: Cropping and Resizing – Part 1</title>
@@ -10,9 +10,9 @@
 
 <body>
 
-  <nav class="nav" aria-label="Primary">
+  <nav class="nav">
     <div class="nav-container">
-      <ul id="nav-links" class="nav-links">
+      <ul id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="hw2.2.html">Edited Images</a></li>
         <li><a href="readings.html">Reflections</a></li>
@@ -26,29 +26,29 @@
       </ul>
     </div>
   </nav>
-
-  <nav id="sidebar" class="sidebar collapsed" aria-label="Sidebar">
-    <button class="sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="sidebar-accordion">☰</button>
-    <ul id="sidebar-accordion" class="accordion" role="list">
-      <li role="listitem">
-        <button class="accordion-header" aria-expanded="false" aria-controls="accordion-item-1">Reflections ▸</button>
-        <ul id="accordion-item-1" class="accordion-content" hidden>
+  
+  <nav id="sidebar" class="sidebar collapsed">
+    <div class="sidebar-toggle" id="sidebarToggle">☰</div>
+    <ul class="accordion">
+      <li>
+        <div class="accordion-header">Reflections ▸</div>
+        <ul class="accordion-content">
           <li><a href="readings.html">Reflections</a></li>
         </ul>
       </li>
-
-      <li role="listitem">
-        <button class="accordion-header" aria-expanded="false" aria-controls="accordion-item-2">Photography ▸</button>
-        <ul id="accordion-item-2" class="accordion-content" hidden>
+      <!-- Section 2 -->
+      <li>
+        <button class="accordion-header">Photography ▸</button>
+        <ul class="accordion-content">
           <li><a href="hw3.html">Depth of Field</a></li>
           <li><a href="hw4.html">Photomontage</a></li>
           <li><a href="hw5.html">Photomontage &amp; Design</a></li>
         </ul>
       </li>
-
-      <li role="listitem">
-        <button class="accordion-header" aria-expanded="false" aria-controls="accordion-item-3">Design ▸</button>
-        <ul id="accordion-item-3" class="accordion-content" hidden>
+      <!-- Section 3 -->
+      <li>
+        <button class="accordion-header">Design ▸</button>
+        <ul class="accordion-content">
           <li><a href="hw6.html">Emotive Eye</a></li>
           <li><a href="hw7.html">Illustrated Environment</a></li>
           <li><a href="hw8.html">Animation</a></li>
@@ -57,31 +57,29 @@
       </li>
     </ul>
   </nav>
+  
+  <div class="container">
 
-  <main id="main" class="container" role="main">
     <h1>Homework 2: Cropping and Resizing – Part 1</h1>
 
     <figure>
-      <img src="firehoseb4.jpg" alt="Fire hose coiled on the ground, unedited">
-      <figcaption>
-        <i>
-          Above is my first image. The photo feels a bit washed out, and the subject isn't very eye-catching
-          for any reason other than its color.
-        </i>
-      </figcaption>
+      <img src="firehoseb4.jpg" alt="Unedited fire hose image">
+      <figcaption><i>
+        Above is my first image. The photo feels a bit washed out, and the subject isn't very eye-catching 
+        for any reason other than its color.
+      </i></figcaption>
     </figure>
 
     <figure>
-      <img src="pianob4.jpg" alt="Close up of piano strings and keys, unedited">
-      <figcaption>
-        <i>
-          Above is my second image. The composition is strong, and the strings of the piano make the photo more compelling.
-        </i>
-      </figcaption>
+      <img src="pianob4.jpg" alt="Unedited piano image">
+      <figcaption><i>
+        Above is my second image. The composition is strong, and the strings of the piano make the photo more compelling.
+      </i></figcaption>
     </figure>
-  </main>
 
-  <script src="navbar.js" defer></script>
-  <script src="sidebar.js" defer></script>
+  </div>
+
+  <script src="navbar.js"></script>
+  <script src="sidebar.js"></script>   
 </body>
 </html>
