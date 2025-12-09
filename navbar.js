@@ -6,11 +6,8 @@
 let lastScrollTop = 0;
 const nav = document.querySelector('.nav');
 const navLinks = document.getElementById('nav-links');
-
-
 window.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
   if (scrollTop > lastScrollTop && scrollTop > 20) {
     nav.style.top = `-${nav.offsetHeight}px`; // hide navbar
   } else {
@@ -36,8 +33,7 @@ window.addEventListener("scroll", () => {
 document.querySelectorAll(".accordion-header").forEach(btn => {
   btn.addEventListener("click", () => {
     const content = btn.nextElementSibling;
-    content.style.display = content.style.display === "block" ? "none" : "block";
-
+    content.classList.toggle('open');
     btn.innerHTML = btn.innerHTML.includes("▾")
       ? btn.innerHTML.replace("▾", "▸")
       : btn.innerHTML.replace("▸", "▾");
