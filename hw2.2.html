@@ -25,6 +25,7 @@
     <li><a href="hw9.html">Interactive Story</a></li>
   </ul>
 </nav>
+<script src="navbar.js"></script>
 
 <h1>Homework 2: Cropping and Resizing – Part 2</h1>
 
@@ -47,29 +48,6 @@
   </i></figcaption>
 </figure>
 
-<script>
-  // Hamburger toggle for mobile
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('nav-links');
-
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
-
-  // Hide navbar on scroll down, show on scroll up
-  let lastScrollTop = 0;
-  const nav = document.querySelector('.nav');
-
-  window.addEventListener('scroll', () => {
-    const st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop) {
-      nav.style.top = '-60px'; // adjust based on navbar height
-    } else {
-      nav.style.top = '0';
-    }
-    lastScrollTop = st <= 0 ? 0 : st;
-  }, false);
-</script>
 
 </body>
 </html>
