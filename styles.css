@@ -110,6 +110,6 @@ figcaption {
 ========================= */
 @media (max-width: 500px) {
   body {
-   padding-top; 100px;
+   padding-top: 100px;
   }
 }
