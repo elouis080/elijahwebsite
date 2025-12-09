@@ -1,52 +1,70 @@
 // =========================
-// hideNav.js
+// navbar.js (defensive, combined handlers)
 // =========================
 
-// Top navbar hide on scroll
-let lastScrollTop = 0;
-const nav = document.querySelector('.nav');
-const navLinks = document.getElementById('nav-links');
-window.addEventListener('scroll', () => {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  if (scrollTop > lastScrollTop && scrollTop > 20) {
-    nav.style.top = `-${nav.offsetHeight}px`; // hide navbar
-  } else {
-    nav.style.top = "0"; // show navbar
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  // =========================
+  // Hide navbar on scroll + show-scrollbar logic
+  // =========================
+  const nav = document.querySelector('.nav');
+  let lastScrollTop = 0;
+  let scrollbarTimeout;
 
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-// Smooth scrollbar appearance
-let timeout;
-window.addEventListener("scroll", () => {
-  document.body.classList.add("show-scrollbar");
-  clearTimeout(timeout);
-  timeout = setTimeout(() => {
-    document.body.classList.remove("show-scrollbar");
-  }, 800);
-});
+    // hide/show navbar if present
+    if (nav) {
+      if (scrollTop > lastScrollTop && scrollTop > 20) {
+        nav.style.top = `-${nav.offsetHeight}px`; // hide navbar
+      } else {
+        nav.style.top = '0'; // show navbar
+      }
+    }
 
-// =========================
-// Accordion
-// =========================
-document.querySelectorAll(".accordion-header").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const content = btn.nextElementSibling;
-    content.classList.toggle('open');
-    btn.innerHTML = btn.innerHTML.includes("▾")
-      ? btn.innerHTML.replace("▾", "▸")
-      : btn.innerHTML.replace("▸", "▾");
+    // scrollbar visibility toggling
+    document.body.classList.add('show-scrollbar');
+    clearTimeout(scrollbarTimeout);
+    scrollbarTimeout = setTimeout(() => {
+      document.body.classList.remove('show-scrollbar');
+    }, 800);
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }, { passive: true });
+
+  // =========================
+  // Accordion
+  // =========================
+  document.querySelectorAll('.accordion-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      if (!content) return;
+      content.classList.toggle('open');
+
+      // Toggle arrow character safely using textContent
+      const text = btn.textContent || '';
+      if (text.includes('▾')) {
+        btn.textContent = text.replace('▾', '▸');
+      } else if (text.includes('▸')) {
+        btn.textContent = text.replace('▸', '▾');
+      }
+    });
   });
-});
 
-// =========================
-// Sidebar Collapse
-// =========================
-const sidebar = document.getElementById('sidebar');
-const toggle = document.getElementById('sidebarToggle');
+  // =========================
+  // Sidebar Collapse (defensive)
+  // =========================
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.getElementById('sidebarToggle');
 
-toggle.addEventListener('click', () => {
-  sidebar.classList.toggle("collapsed");
-  document.body.classList.toggle("sidebar-collapsed");
+  if (toggle && sidebar) {
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      document.body.classList.toggle('sidebar-collapsed');
+
+      // update aria-expanded if present
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', (!expanded).toString());
+    });
+  }
 });
