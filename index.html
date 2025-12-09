@@ -12,9 +12,7 @@
 <body>
 <nav class="nav">
   <div class="nav-container">
-    <div class="hamburger" id="hamburger">
-      ☰
-    </div>
+    <div class="hamburger" id="hamburger">☰</div>
     <ul id="nav-links">
       <li><a href="readings.html">Reflections</a></li>
       <li><a href="hw2.html">Cropping & Resizing</a></li>
@@ -28,14 +26,11 @@
     </ul>
   </div>
 </nav>
-
-<script src="navbar.js"></script>
+<div id="hamburger-static">☰</div>
   
-<h1>Eli's Portfolio</h1>
-
 <main>
-<p>
-  Elijah Louis is a New York based audio engineer-turned-web designer.
+<h1>Eli's Portfolio</h1>
+<p>Elijah Louis is a New York based audio engineer-turned-web designer.
   I started audio engineering as an amateur when I set out to make music
   of my own on Logic Pro X. Since then, I have graduated from Laguardia CC
   with an A.A.S. in audio engineering, fully equipped with professional
@@ -52,5 +47,19 @@
 
 <img src="eliphoto.JPG" alt="Eli photo">
 </main>
+  
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  const hamburgerStatic = document.getElementById('hamburger-static');
+
+  hamburger?.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  hamburgerStatic?.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
 </body>
 </html>
