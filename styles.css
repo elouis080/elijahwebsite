@@ -34,7 +34,7 @@ p, li, figcaption {
   top: 0;
   left: 0;
   width: 100vw; /* allows for full viewport width */
-  background-color: rgba(34, 34, 34, 0); /*transparent bg*/
+  background-color: rgba(34, 34, 34, 0);
   padding: 10px 0;
   z-index: 1000;
   display: flex;
