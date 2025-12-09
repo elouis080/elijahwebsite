@@ -126,7 +126,7 @@ p, li, figcaption {
     top: 60px;                 /* just below navbar */
     right: 10px;               /*offset from right */
     width: 200px;              /* menu width */
-    background-color: rgba(34, 34, 34, 0.8); /* semi-transparent */ 
+    background-color: rgba(34, 34, 34, 0); /* fully transparent */
     backdrop-filter: blur(6px); /* optional frosted effect - MAYBE keep */
     padding: 10px;
     z-index: 1002; /*places above all content*/
