@@ -120,8 +120,8 @@ p, li, figcaption {
   }
 
   #nav-links {
-    display: none;
-    flex-direction: column;
+    display: none; /*hidden by default*/
+    flex-direction: column; /*vertical menu*/
     position: fixed;           /* floating over content */
     top: 60px;                 /* just below navbar */
     right: 10px;               /*offset from right */
@@ -133,11 +133,11 @@ p, li, figcaption {
   }
 
   #nav-links.show {
-    display: flex;
+    display: flex;  /*shown when hamburger clicked*/
   }
 
   #nav-links li {
-    margin: 10px 0; /*smaller spacing for floating menu*/
+    margin: 10px 0; /*smaller spacing for vertical menu*/
   }
 }
 
