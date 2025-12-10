@@ -308,8 +308,9 @@ html {
 body.sidebar-collapsed main {
   margin-left: 60px;
 }
+
 main {
-  margin-left: 220px; /* default sidebar width */
+  /* default: do not force a left margin so content can be centered */
   transition: margin-left 0.3s ease;
 }
 
