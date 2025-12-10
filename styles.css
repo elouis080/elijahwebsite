@@ -239,16 +239,14 @@ html {
   background-color: transparent;
   border: none;
   padding: 10px;
-  cursor: pointer;
+  cursor: grabbing;
 }
-
 /* Keep keyboard focus visible */
 .sidebar-toggle:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
   border-radius: 4px;
 }
-
 /* =========================
    Accordion Sections
 ========================= */
