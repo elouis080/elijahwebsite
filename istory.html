@@ -1,9 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Homework 10 for MEDP150 – Interactive Story">
-  <title>HW 10: Interactive Story</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Interactive Story — Eli</title>
+  <meta name="description" content="An interactive branching story example for Eli's site.">
+  <style>
+    /* Scoped styles for istory.html to avoid conflicts with site CSS */
+    :root{
+      --bg:#0b0b0b;
+      --card:#151515;
+      --accent:#FFD700;
+      --text:#efdecd;
+      --muted:#bfaea3;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:linear-gradient(180deg,#070707,var(--bg));color:var(--text);} 
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px;}
+    .card{width:100%;max-width:880px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));border:1px solid rgba(255,255,255,0.03);padding:28px;border-radius:12px;box-shadow:0 10px 36px rgba(0,0,0,0.6);} 
+    h1{margin:0 0 8px;font-size:1.4rem;color:var(--accent)}
+    #text{font-size:1.03rem;line-height:1.6;margin:12px 0 20px;color:var(--text)}
+    .choices{display:flex;flex-direction:column;gap:10px}
+    .choice{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:10px 14px;border-radius:8px;text-align:left;cursor:pointer;font-weight:700;outline:none}
+    .choice:hover{transform:translateY(-3px);background:rgba(255,215,0,0.03)}
+    .choice:focus{box-shadow:0 0 0 4px rgba(255,215,0,0.12);border-color:var(--accent)}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px;flex-wrap:wrap}
+    .controls{display:flex;gap:8px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+    .btn:hover{color:var(--text);border-color:rgba(255,255,255,0.12)}
+    .progress{font-size:0.9rem;color:var(--muted)}
+    .note{font-size:0.85rem;color:var(--muted);margin-top:10px}
+    .history{font-size:0.85rem;color:var(--muted);max-width:100%;overflow:auto;white-space:nowrap;margin-top:8px}
+    @media (max-width:520px){.card{padding:18px}.choice{font-size:0.95rem}}
+  </style>
 </head>
+<body>
+  <div class="wrap">
+    <article class="card" role="application" aria-labelledby="title">
+      <h1 id="title">The Lantern & The Forking Path</h1>
+
+      <div id="text" aria-live="polite">Loading story…</div>
+
+      <div class="choices" id="choices" role="list"></div>
+
+      <div class="meta">
+        <div class="controls" role="group" aria-label="Story controls">
+          <button class="btn" id="backBtn" title="Go back (or press Backspace)">Back</button>
+          <button class="btn" id="restartBtn" title="Restart story">Restart</button>
+          <button class="btn" id="saveBtn" title="Save progress">Save</button>
+          <button class="btn" id="loadBtn" title="Load saved progress">Load</button>
+        </div>
+        <div class="progress" id="progress">Node: —</div>
+      </div>
+
+      <div class="note" id="note">Tip: Press 1/2/3 to choose, Backspace to go back. Choices are keyboard-accessible.</div>
+      <div class="history" id="history" aria-hidden="false"></div>
+    </article>
+  </div>
+
+  <script>
+    // Branching story structure (easy to extend)
+    const story = {
+      start: {
+        text: `You stand at a fork in the path as dusk falls. A brass lantern hangs on a post, its light steady. To the left you hear water. To the right, trees rustle.`,
+        choices: [
+          { text: "Follow the sound of water", next: "riverEdge" },
+          { text: "Head into the trees", next: "darkWoods" },
+          { text: "Inspect the lantern", next: "lantern" }
+        ]
+      },
+      riverEdge: {
+        text: `You step toward the riverbank. The water reflects fragments of the sky. There's a small boat tied to a post.`,
+        choices: [
+          { text: "Untie the boat and ride downstream", next: "boatRide" },
+          { text: "Search the bank", next: "bankSearch" },
+          { text: "Return to the fork", next: "start" }
+        ]
+      },
+      darkWoods: {
+        text: `In the trees, a faint melody leads you to a clearing where a stone altar glows faintly.`,
+        choices: [
+          { text: "Approach the altar", next: "altar" },
+          { text: "Hide and observe", next: "hide" },
+          { text: "Return to the fork", next: "start" }
+        ]
+      },
+      lantern: {
+        text: `The lantern's glass is warm. A folded note is tucked beneath it: "Choose with heart."`,
+        choices: [
+          { text: "Take the note and follow the water", next: "riverEdge" },
+          { text: "Keep the lantern and go right", next: "darkWoods" },
+          { text: "Leave the lantern and continue", next: "start" }
+        ]
+      },
+      boatRide: {
+        text: `The boat drifts gently. Downstream, the river opens into a hidden harbor where a small chest rests.`,
+        choices: [
+          { text: "Open the chest", next: "treasure" },
+          { text: "Leave it and return", next: "riverEdge" }
+        ]
+      },
+      bankSearch: {
+        text: `You find a silver fork half-buried in the mud, inscribed with a strange rune.`,
+        choices: [
+          { text: "Keep the fork", next: "forkKept" },
+          { text: "Discard it", next: "riverEdge" }
+        ]
+      },
+      altar: {
+        text: `A soft voice asks you quietly, "Will you give or take?"`,
+        choices: [
+          { text: "Give something from your pack", next: "gaveItem" },
+          { text: "Take from the altar", next: "tookItem" }
+        ]
+      },
+      hide: {
+        text: `You watch as moonlit figures pass — they hum and scatter seeds. Nothing notices you.`,
+        choices: [
+          { text: "Approach after they leave", next: "altar" },
+          { text: "Sneak back", next: "darkWoods" }
+        ]
+      },
+      treasure: {
+        text: `Inside the chest is a small lantern like the one on the post — and a note: "Light what you carry." You feel content.`,
+        choices: [
+          { text: "Return to the fork and finish", next: "endGood" }
+        ]
+      },
+      forkKept: {
+        text: `The fork pulses with warmth. Later, it helps you pry open a stubborn door; fortune smiles upon you.`,
+        choices: [
+          { text: "Follow the river's path", next: "boatRide" },
+          { text: "Return to the fork", next: "start" }
+        ]
+      },
+      gaveItem: {
+        text: `You place a small trinket on the altar. The world seems to tilt kindly toward you.`,
+        choices: [
+          { text: "Leave thankful", next: "endGood" },
+          { text: "Stay and wait", next: "hide" }
+        ]
+      },
+      tookItem: {
+        text: `The altar's light dims. You pocket a glowing seed. A distant bell tolls — consequences follow.`,
+        choices: [
+          { text: "Run away", next: "endBad" },
+          { text: "Return it", next: "gaveItem" }
+        ]
+      },
+      endGood: {
+        text: `Dawn finds you at the path, richer in story and light. Your journey ends well.`,
+        choices: [
+          { text: "Restart the tale", next: "start" }
+        ]
+      },
+      endBad: {
+        text: `Shadows seem longer now. You find lessons where you once sought treasure. The road continues.`,
+        choices: [
+          { text: "Restart the tale", next: "start" }
+        ]
+      }
+    };
+
+    // State
+    let currentId = 'start';
+    const historyStack = [];
+
+    // Elements
+    const textEl = document.getElementById('text');
+    const choicesEl = document.getElementById('choices');
+    const progressEl = document.getElementById('progress');
+    const historyEl = document.getElementById('history');
+    const backBtn = document.getElementById('backBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const loadBtn = document.getElementById('loadBtn');
+
+    function renderNode(id, focusChoiceIndex = 0){
+      const node = story[id];
+      if (!node) return console.error('Missing node', id);
+      currentId = id;
+
+      // Update text
+      textEl.innerHTML = node.text;
+
+      // Render choices
+      choicesEl.innerHTML = '';
+      node.choices.forEach((c, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice';
+        btn.setAttribute('role','listitem');
+        btn.innerHTML = `<span style="opacity:.9;margin-right:8px;font-weight:600">${idx+1}.</span><span>${c.text}</span>`;
+        btn.dataset.next = c.next;
+        btn.tabIndex = 0;
+        btn.addEventListener('click', () => makeChoice(idx));
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); makeChoice(idx); }
+        });
+        choicesEl.appendChild(btn);
+      });
+
+      // Update meta
+      progressEl.textContent = `Node: ${id}`;
+      historyEl.textContent = 'History: ' + historyStack.map(h => h).join(' → ');
+
+      // focus first choice (or requested)
+      const btns = choicesEl.querySelectorAll('.choice');
+      if (btns[focusChoiceIndex]) btns[focusChoiceIndex].focus();
+    }
+
+    function makeChoice(choiceIndex){
+      const node = story[currentId];
+      const choice = node.choices[choiceIndex];
+      if (!choice) return;
+      historyStack.push(currentId);
+      renderNode(choice.next);
+    }
+
+    // Controls
+    backBtn.addEventListener('click', () => {
+      if (historyStack.length === 0) return;
+      const prev = historyStack.pop();
+      renderNode(prev);
+    });
+    restartBtn.addEventListener('click', () => {
+      historyStack.length = 0;
+      renderNode('start');
+    });
+    saveBtn.addEventListener('click', () => {
+      try {
+        localStorage.setItem('istory.current', currentId);
+        localStorage.setItem('istory.history', JSON.stringify(historyStack));
+        saveBtn.textContent = 'Saved';
+        setTimeout(()=> saveBtn.textContent = 'Save', 1100);
+      } catch(e) {
+        console.error('Save failed', e);
+      }
+    });
+    loadBtn.addEventListener('click', () => {
+      const cur = localStorage.getItem('istory.current');
+      const hist = localStorage.getItem('istory.history');
+      if (cur) currentId = cur;
+      if (hist) {
+        try { const arr = JSON.parse(hist); historyStack.length = 0; historyStack.push(...arr); } catch(e){}
+      }
+      renderNode(currentId);
+      loadBtn.textContent = 'Loaded';
+      setTimeout(()=> loadBtn.textContent = 'Load', 1100);
+    });
+
+    // Keyboard support: 1/2/3 chooses options; Backspace goes back
+    document.addEventListener('keydown', (e) => {
+      // ignore when focused on input-like elements
+      const tag = document.activeElement && document.activeElement.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+      if (/^[1-9]$/.test(e.key)) {
+        const idx = parseInt(e.key,10)-1;
+        const btns = choicesEl.querySelectorAll('.choice');
+        if (btns[idx]) btns[idx].click();
+      } else if (e.key === 'Backspace') {
+        if (historyStack.length) {
+          e.preventDefault();
+          const prev = historyStack.pop();
+          renderNode(prev);
+        }
+      }
+    });
+
+    // Initialize
+    function init(){
+      renderNode(currentId);
+    }
+    init();
+  </script>
+</body>
+</html>
