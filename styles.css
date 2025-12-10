@@ -219,8 +219,7 @@ html {
   left: 0;
   width: 220px;
   height: 100vh;
-  background: rgba(34,34,34,0.95);
-  /*backdrop-filter: blur(6px); */
+  background: rgba(34,34,34,0.0);
   padding: 10px 10px;
   box-sizing: border-box;
   overflow-y: auto;
@@ -235,11 +234,10 @@ html {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: transparent;
-  background-color: transparent;
+  background: transparent !important;
   border: none;
   padding: 10px;
-  cursor: grabbing;
+  cursor: pointer;
 }
 /* Keep keyboard focus visible */
 .sidebar-toggle:focus {
