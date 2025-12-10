@@ -232,13 +232,21 @@ html {
    Ensure the toggle element itself has a stacking context above the nav
 ========================= */
 .sidebar-toggle {
-  font-size: 1.4rem;
-  color: #efdecd;
-  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-color: transparent;
+  border: none;
   padding: 10px;
-  user-select: none;
-  position: relative;   /* create stacking context for z-index to take effect */
-  z-index: 10002;       /* sits above the nav and overlay interactions */
+  cursor: pointer;
+}
+
+/* Keep keyboard focus visible */
+.sidebar-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+  border-radius: 4px;
 }
 
 /* =========================
