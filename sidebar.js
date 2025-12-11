@@ -10,11 +10,19 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var sidebar = qs('#sidebar');
-    var toggle = qs('#sidebarToggle');
+    // fallback: prefer #sidebarToggle but accept .sidebar-toggle if id missing
+    var toggle = qs('#sidebarToggle') || qs('.sidebar-toggle');
     var accordionHeaders = qsa('.accordion-header');
 
-    // If no sidebar or toggle found, nothing to do.
-    if (!sidebar || !toggle) return;
+    // If no sidebar or toggle found, warn and exit.
+    if (!sidebar) {
+      console.warn('sidebar element not found on this page; sidebar functionality will be disabled.');
+      return;
+    }
+    if (!toggle) {
+      console.warn('sidebar toggle not found on this page; sidebar functionality will be disabled.');
+      return;
+    }
 
     // Initialize aria-expanded from current class state if not present
     if (!toggle.hasAttribute('aria-expanded')) {
