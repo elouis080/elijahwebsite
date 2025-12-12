@@ -90,20 +90,6 @@
 <img src="eliphoto.jpg" alt="Eli photo" width="400">
 </main>
 <script src="navbar.js"></script>
-<script src="sidebar.js"></script>
-  <script>
-    // Safe: runs after DOM because script at end of body
-    const btn = document.getElementById('menu-button');
-    const menu = document.getElementById('site-menu');
-    if (btn && menu) {
-      btn.addEventListener('click', () => {
-        const isOpen = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!isOpen));
-        menu.classList.toggle('open');
-      });
-    } else {
-      console.warn('Menu button or menu not found', btn, menu);
-    }
-  </script>  
+<script src="sidebar.js"></script> 
 </body>
 </html>
