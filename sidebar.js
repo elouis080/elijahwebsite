@@ -63,34 +63,65 @@
       }
     });
 
-    // Accordion behavior for headers (assumes .accordion-header are buttons)
-    accordionHeaders.forEach(function (header) {
-      // find the next sibling list (accordion content). If markup differs, this is forgiving:
-      var content = header.nextElementSibling;
-      if (!content) return;
+   // Accordion behavior for headers
+accordionHeaders.forEach(function (header) {
+  // content is expected to be the nested .accordion-content inside the same list item
+  var li = header.closest('li');
+  if (!li) return;
+  var content = li.querySelector('.accordion-content');
+  if (!content) return;
 
-      // Ensure ARIA attributes exist
-      var contentId = content.id || ('accordion-content-' + Math.random().toString(36).slice(2, 9));
-      content.id = contentId;
+  // Ensure ARIA attributes exist
+  var contentId = content.id || ('accordion-content-' + Math.random().toString(36).slice(2, 9));
+  content.id = contentId;
 
-      if (!header.hasAttribute('aria-controls')) header.setAttribute('aria-controls', contentId);
-      if (!header.hasAttribute('aria-expanded')) header.setAttribute('aria-expanded', 'false');
+  if (!header.hasAttribute('aria-controls')) header.setAttribute('aria-controls', contentId);
+  if (!header.hasAttribute('aria-expanded')) header.setAttribute('aria-expanded', 'false');
 
-      // Put content into hidden state if not already
-      if (!content.hasAttribute('hidden') && header.getAttribute('aria-expanded') !== 'true') {
-        content.setAttribute('hidden', '');
-      }
+  // Ensure CSS-driven state: use the .open class to show/hide content (styles.css provides .accordion-content.open)
+  // Initialize state: remove hidden attribute to avoid conflicts, and set .open if aria says expanded
+  content.removeAttribute('hidden');
+  if (header.getAttribute('aria-expanded') === 'true') {
+    content.classList.add('open');
+  } else {
+    content.classList.remove('open');
+  }
 
-      function toggleAccordion() {
-        var expanded = header.getAttribute('aria-expanded') === 'true';
-        if (expanded) {
-          header.setAttribute('aria-expanded', 'false');
-          content.setAttribute('hidden', '');
-        } else {
-          header.setAttribute('aria-expanded', 'true');
-          content.removeAttribute('hidden');
-        }
-      }
+  function toggleAccordion() {
+    var expanded = header.getAttribute('aria-expanded') === 'true';
+    if (expanded) {
+      header.setAttribute('aria-expanded', 'false');
+      content.classList.remove('open');
+      // allow CSS transition to collapse
+      content.style.maxHeight = null;
+    } else {
+      header.setAttribute('aria-expanded', 'true');
+      content.classList.add('open');
+      // optional: set explicit maxHeight to allow smooth transition if desired
+      content.style.maxHeight = content.scrollHeight + 'px';
+    }
+  }
+
+  header.addEventListener('click', function (ev) {
+    ev.preventDefault();
+    toggleAccordion();
+  });
+
+  // Support Enter/Space on non-button elements (defensive)
+  header.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Enter' || ev.key === ' ') {
+      ev.preventDefault();
+      toggleAccordion();
+    }
+  });
+
+  // If CSS transition was used, clear inline maxHeight after transition to be flexible
+  content.addEventListener('transitionend', function () {
+    if (content.classList.contains('open')) {
+      content.style.maxHeight = null;
+    }
+  });
+});
 
       header.addEventListener('click', function (ev) {
         ev.preventDefault();
