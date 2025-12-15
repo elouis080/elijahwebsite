@@ -171,3 +171,6 @@ accordionHeaders.forEach(function (header) {
     }
   });
 });
+
+  }); // End DOMContentLoaded
+})(); // End IIFE
