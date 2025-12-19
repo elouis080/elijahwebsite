@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Hungry Duck</title>
+</head>
+<body>
+
+  <h1>The Hungry Duck</h1>
+
+  <p id="story">
+    A hungry duck waddles up to you and looks at you expectantly.
+    <br><br>
+    “Do you have any grapes?”
+  </p>
+
+  <div id="choices">
+    <button onclick="giveGrapes()">Give the duck grapes</button>
+    <button onclick="giveSomethingElse()">Give the duck something else</button>
+    <button onclick="walkAway()">Walk away</button>
+  </div>
+
+  <script>
+    function giveGrapes() {
+      document.getElementById("story").innerText =
+        "You give the duck grapes. The duck happily eats them and follows you around forever. The end.";
+      document.getElementById("choices").style.display = "none";
+    }
+
+    function giveSomethingElse() {
+      document.getElementById("story").innerText =
+        "You offer the duck something other than grapes. The duck looks disappointed and walks away. The end.";
+      document.getElementById("choices").style.display = "none";
+    }
+
+    function walkAway() {
+      document.getElementById("story").innerText =
+        "You walk away. The duck quacks angrily and asks someone else for grapes. The end.";
+      document.getElementById("choices").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
