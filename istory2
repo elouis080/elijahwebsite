@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>The Hungry Duck</title>
+  <title>Got Any Grapes?</title>
   <style>
     /* Scoped styles for istory.html to avoid conflicts with site CSS */
     :root{
@@ -36,15 +36,17 @@
   <h1>The Hungry Duck</h1>
 
   <p id="story">
-    A hungry duck waddles up to you and looks at you expectantly.
+    It's a beautiful sunny day, you've decided to set up a lemonade stand.
+    It's sweltering out. And your ice is melting faster than customers are showing up.
+    You are approached by a duck, he looks at you expectantly.
     <br><br>
-    “Do you have any grapes?”
+    "'Hey!' The duck says. You got any grapes?”
   </p>
 
   <div id="choices">
     <button onclick="giveGrapes()">Give the duck grapes</button>
-    <button onclick="giveSomethingElse()">Give the duck something else</button>
-    <button onclick="walkAway()">Walk away</button>
+    <button onclick="Market()">Offer the duck directions to the supermarket</button>
+    <button onclick="Lemonade()">Tell the duck you're selling lemonade</button>
   </div>
 
   <script>
@@ -54,15 +56,24 @@
       document.getElementById("choices").style.display = "none";
     }
 
-    function giveSomethingElse() {
+    function Market() {
       document.getElementById("story").innerText =
-        "You offer the duck something other than grapes. The duck looks disappointed and walks away. The end.";
+        "You offer the duck some directions to the market.
+         Maybe he'll find better luck there... 
+         After some time, the duck waddles back with a bushel
+         of grapes and a large bag of ice. He quacks thank you
+         as he plops both himself and the ice bag on the grass,
+         enjoying his freshly bought grapes, and the company of 
+         his new friend. The end.";
       document.getElementById("choices").style.display = "none";
     }
 
-    function walkAway() {
+    function Lemonade() {
       document.getElementById("story").innerText =
-        "You walk away. The duck quacks angrily and asks someone else for grapes. The end.";
+       "You offer some lemonade to the duck. He waddles away, continuing on 
+       with his grape search. <i>What was up with that guy? 
+       That jingle was good though. Then he waddled away, waddle 
+       waddle...</i> The end.";
       document.getElementById("choices").style.display = "none";
     }
   </script>
